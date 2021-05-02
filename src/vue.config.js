@@ -1,8 +1,8 @@
 module.exports = {
   pwa: {
     name: 'Number Systems Converter',
-    themeColor: 'rgb(191, 191, 191)',
-    msTileColor: ' rgb(191, 191, 191)',
+    themeColor: '#bfbfbf',
+    msTileColor: '#bfbfbf',
     mobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'default',
     start_url: '.',
