@@ -4,6 +4,7 @@
           <input
             type="number"
             placeholder="Dec" 
+            id="dec"
             v-model="dec"
             @keydown="base = 10"
             ref="dec"
@@ -15,6 +16,7 @@
             v-model="bin"
             @keydown="base = 2"
             ref="bin"
+            id=bin
         />
           <br>
           <input
@@ -23,13 +25,15 @@
             v-model="hex"
             @keydown="base = 16"
             ref="hex"
+            id="hex"
         />
           <input
             type="number"
-            placeholder="Oct" 
+            placeholder="Oct"
             v-model="oct"
             @keydown="base = 8"
             ref="oct"
+            id="oct"
         />
         <br>
         <select 
@@ -55,7 +59,7 @@
         <input
             type="text"
             class="smallInput"
-            placeholder="Base" 
+            placeholder="Value" 
             v-model="selected"
             ref="oct"
         />
@@ -165,7 +169,7 @@ export default {
 
 <style scoped>
     .form {
-        margin-top: 7rem;
+        margin-top: 10rem;
     }
     input, 
     .select {
@@ -207,5 +211,19 @@ export default {
     /* Firefox */
     input[type=number] {
     -moz-appearance: textfield;
+    }
+
+    @media (max-width: 740px) {
+        .form {
+            margin-top: 7rem;
+        }
+    }
+    @media (max-width: 371px) {
+        input {
+            width: 12rem;
+        }
+        .smallInput {
+            width: 5rem;
+        }
     }
 </style>
