@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-      <form class="form" autocomplete="off">
+      <form class="form" autocomplete=off>
           <h3 for="dec" class="label">
               <span
                 class="inputLabel"
@@ -18,7 +18,7 @@
                 ref="dec"
                 value=""
                 autofocus
-                autocomplete="off"
+                autocomplete=off
                 maxlength="15"
               />
               <span 
@@ -44,7 +44,7 @@
                 ref="bin"
                 id=bin
                 maxlength="40"
-                autocomplete="off"
+                autocomplete=off
               />
               <span 
                 v-if="errorBin"
@@ -68,7 +68,7 @@
                 @keydown="base = 16"
                 ref="hex"
                 id="hex"
-                autocomplete="off"
+                autocomplete=off
                 maxlength="13"
               />
               <span 
@@ -94,7 +94,7 @@
                 ref="oct"
                 id="oct"
                 maxlength="17"
-                autocomplete="off"
+                autocomplete=off
               />
               <span 
                 v-if="errorOct"
@@ -132,7 +132,7 @@
             @keydown="base=''" 
             @click="intoView()"
             ref="base"
-            autocomplete="off"
+            autocomplete=off
         />
          <span 
             v-if="errorBase"
