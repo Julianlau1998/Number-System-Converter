@@ -20,6 +20,12 @@
                 autofocus
                 maxlength="15"
               />
+              <span 
+                v-if="errorDec"
+                class="error"
+              >
+                Not a valid decimal value
+              </span>
             </h3>
           <h3>
               <span
@@ -38,6 +44,12 @@
                 id=bin
                 maxlength="40"
               />
+              <span 
+                v-if="errorBin"
+                class="error"
+              >
+                Not a valid binary value
+              </span>
           </h3>
           <h3>
               <span
@@ -61,7 +73,7 @@
                 v-if="errorHex"
                 class="error"
               >
-                Not a valid hex value
+                Not a valid hexadecimal value
               </span>
           </h3>
           <h3>
@@ -81,6 +93,12 @@
                 id="oct"
                 maxlength="17"
               />
+              <span 
+                v-if="errorOct"
+                class="error"
+              >
+                Not a valid Octal value
+              </span>
           </h3>
         <select 
             name="baseSelect"
@@ -188,12 +206,39 @@ export default {
     },
     methods: {
             convert (val, base) {
-                if(base === 16 && val!=='') {
-                    if (isNaN(parseInt(val, 16))) {
+                if(val!=='') {
+                    if (isNaN(parseInt(val, base))) {
                         val=''
-                        this.errorHex=true
+                        switch (base) {
+                            case 2:
+                                this.errorBin = true
+                                this.errorOct = false
+                                this.errorDec = false
+                                this.errorHex = false
+                                break
+                            case 8:
+                                this.errorBin = false
+                                this.errorOct = true
+                                this.errorDec = false
+                                this.errorHex = false
+                                break
+                            case 10:
+                                this.errorDec = true
+                                this.errorBin = false
+                                this.errorOct = false
+                                this.errorHex = false
+                                break
+                            case 16:
+                                this.errorHex = true
+                                this.errorBin = false
+                                this.errorDec = false
+                                this.errorOct = false
+                        }
                     } else {
-                        this.errorHex=false
+                        this.errorHex = false
+                        this.errorOct = false
+                        this.errorDec = false
+                        this.errorBin = false
                     }
                 }
                 if (base === 10) {
