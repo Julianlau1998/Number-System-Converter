@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-      <form class="form">
+      <form class="form" autocomplete="off">
           <h3 for="dec" class="label">
               <span
                 class="inputLabel"
