@@ -19,6 +19,7 @@
                 value=""
                 autofocus
                 onfocus="this.removeAttribute('readonly');"
+                autocomplete="off"
                 maxlength="15"
               />
               <span 
@@ -45,6 +46,7 @@
                 id=bin
                 maxlength="40"
                 onfocus="this.removeAttribute('readonly');"
+                autocomplete="off"
               />
               <span 
                 v-if="errorBin"
@@ -69,6 +71,7 @@
                 ref="hex"
                 id="hex"
                 onfocus="this.removeAttribute('readonly');"
+                autocomplete="off"
                 maxlength="13"
               />
               <span 
@@ -95,6 +98,7 @@
                 id="oct"
                 maxlength="17"
                 onfocus="this.removeAttribute('readonly');"
+                autocomplete="off"
               />
               <span 
                 v-if="errorOct"
@@ -133,6 +137,7 @@
             @click="intoView()"
             ref="base"
             onfocus="this.removeAttribute('readonly');"
+            autocomplete="off"
         />
          <span 
             v-if="errorBase"
