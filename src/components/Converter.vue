@@ -259,13 +259,16 @@ export default {
                         if (this.notSelected === true) {
                             this.selectedBase = this.$refs.selectedBase.value
                         }
-                        this.errorHex = false
                         val = parseInt(val)
                         this.bin = val.toString(2)
                         this.hex = val.toString(16)
                         this.oct = val.toString(8)
                         this.dec = val.toString(10)
                         this.selected = val.toString(parseInt(this.selectedBase))
+                        this.errorBin = false
+                        this.errorOct = false
+                        this.errorDec = false
+                        this.errorHex = false
                     } else {
                         this.bin = ''
                         this.hex = ''
