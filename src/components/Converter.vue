@@ -18,6 +18,7 @@
                 ref="dec"
                 value=""
                 autofocus
+                autocomplete="off"
                 maxlength="15"
               />
               <span 
@@ -43,6 +44,7 @@
                 ref="bin"
                 id=bin
                 maxlength="40"
+                autocomplete="off"
               />
               <span 
                 v-if="errorBin"
@@ -92,6 +94,7 @@
                 ref="oct"
                 id="oct"
                 maxlength="17"
+                autocomplete="off"
               />
               <span 
                 v-if="errorOct"
@@ -129,7 +132,14 @@
             @keydown="base=''" 
             @click="intoView()"
             ref="base"
+            autocomplete="off"
         />
+         <span 
+            v-if="errorBase"
+            class="errorBase"
+          >
+                Not a valid value
+          </span>
       </form>
   </div>
 </template>
@@ -148,13 +158,20 @@ export default {
             selectedBase: 10,
             bases: [],
             notSelected: true,
-            errorHex: false
+            errorHex: false,
+            errorDec: false,
+            errorBin: false,
+            errorOct: false,
+            errorBase: false
         }
     },
     created () {
         this.bases = [...Array(37).keys()]
         this.bases = this.bases.filter(el => el != 0 && el!= 1)
-        console.log(this.bases)
+    },
+    mounted () {
+        this.$refs.dec.focus()
+        this.$refs.dec.click()
     },
     watch: {
         dec(val) {
@@ -179,7 +196,7 @@ export default {
         },
         selected(val) {
             if (isNaN(parseInt(val, 16))) {
-                val=0
+                val=''
             }
             if (
                 this.base !== 2 &&
@@ -233,12 +250,8 @@ export default {
                                 this.errorBin = false
                                 this.errorDec = false
                                 this.errorOct = false
+                                break
                         }
-                    } else {
-                        this.errorHex = false
-                        this.errorOct = false
-                        this.errorDec = false
-                        this.errorBin = false
                     }
                 }
                 if (base === 10) {
@@ -261,7 +274,11 @@ export default {
                     }
                 } else {
                     if (val !== '') {
+                        this.errorBin = false
+                        this.errorOct = false
+                        this.errorDec = false
                         this.errorHex = false
+
                         this.dec = parseInt(val, base)
                         this.bin = this.dec.toString(2)
                         this.oct = this.dec.toString(8)
@@ -358,7 +375,7 @@ export default {
 
     @media (max-width: 740px) {
         .form {
-            margin-top: 5.5rem;
+            margin-top: 4.5rem;
         }
     }
     @media (max-width: 371px) {
