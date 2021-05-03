@@ -1,46 +1,93 @@
 <template>
   <div class="wrapper">
       <form class="form">
-          <input
-            type="number"
-            placeholder="Dec" 
-            id="dec"
-            v-model="dec"
-            @keydown="base = 10"
-            ref="dec"
-            value=""
-        />
-          <input
-            type="number"
-            placeholder="Bin"
-            v-model="bin"
-            @keydown="base = 2"
-            ref="bin"
-            id=bin
-        />
-          <br>
-          <input
-            type="text"
-            placeholder="Hex" 
-            v-model="hex"
-            @keydown="base = 16"
-            ref="hex"
-            id="hex"
-        />
-          <input
-            type="number"
-            placeholder="Oct"
-            v-model="oct"
-            @keydown="base = 8"
-            ref="oct"
-            id="oct"
-        />
-        <br>
+          <h3 for="dec" class="label">
+              <span
+                class="inputLabel"
+                v-if="dec!==null && dec!==''"
+              >
+                  Decimal
+              </span>
+              <br>
+              <input
+                type="tel"
+                placeholder="Dec" 
+                id="dec"
+                v-model="dec"
+                @keydown="base = 10"
+                ref="dec"
+                value=""
+                autofocus
+                maxlength="15"
+              />
+            </h3>
+          <h3>
+              <span
+                class="inputLabel"
+                v-if="bin!==null && bin!==''"
+              >
+                  Binary
+              </span>
+              <br>
+               <input
+                type="tel"
+                placeholder="Bin"
+                v-model="bin"
+                @keydown="base = 2"
+                ref="bin"
+                id=bin
+                maxlength="40"
+              />
+          </h3>
+          <h3>
+              <span
+                class="inputLabel"
+                v-if="hex!==null && hex!==''"
+              >
+                  Hexadecimal
+              </span>  
+              <br>
+              <input
+                type="text"
+                placeholder="Hex" 
+                v-model="hex"
+                @keydown="base = 16"
+                ref="hex"
+                id="hex"
+                autocomplete="off"
+                maxlength="13"
+              />
+              <span 
+                v-if="errorHex"
+                class="error"
+              >
+                Not a valid hex value
+              </span>
+          </h3>
+          <h3>
+              <span
+                class="inputLabel"
+                v-if="oct!==null && oct!==''"
+              >
+                  Octal
+              </span>
+              <br>
+              <input
+                type="tel"
+                placeholder="Oct"
+                v-model="oct"
+                @keydown="base = 8"
+                ref="oct"
+                id="oct"
+                maxlength="17"
+              />
+          </h3>
         <select 
             name="baseSelect"
             id="baseSelect"
             class="select"
             ref="selectedBase"
+            v-model="selectedBase"
         >
             <option 
                 value="" 
@@ -61,7 +108,9 @@
             class="smallInput"
             placeholder="Value" 
             v-model="selected"
-            ref="oct"
+            @keydown="base=''" 
+            @click="intoView()"
+            ref="base"
         />
       </form>
   </div>
@@ -80,7 +129,8 @@ export default {
             base: null,
             selectedBase: 10,
             bases: [],
-            notSelected: true
+            notSelected: true,
+            errorHex: false
         }
     },
     created () {
@@ -110,6 +160,9 @@ export default {
             }
         },
         selected(val) {
+            if (isNaN(parseInt(val, 16))) {
+                val=0
+            }
             if (
                 this.base !== 2 &&
                 this.base !== 8 &&
@@ -126,15 +179,29 @@ export default {
                     this.convert(val, this.selectedBase)
                 }
             }
+        },
+        selectedBase (val) {
+            if (this.selected !== null && this.selected!=='') {
+                this.selected = parseInt(this.dec).toString(val)
+            }
         }
     },
     methods: {
             convert (val, base) {
+                if(base === 16 && val!=='') {
+                    if (isNaN(parseInt(val, 16))) {
+                        val=''
+                        this.errorHex=true
+                    } else {
+                        this.errorHex=false
+                    }
+                }
                 if (base === 10) {
                     if (val !== '') {
                         if (this.notSelected === true) {
                             this.selectedBase = this.$refs.selectedBase.value
                         }
+                        this.errorHex = false
                         val = parseInt(val)
                         this.bin = val.toString(2)
                         this.hex = val.toString(16)
@@ -149,6 +216,7 @@ export default {
                     }
                 } else {
                     if (val !== '') {
+                        this.errorHex = false
                         this.dec = parseInt(val, base)
                         this.bin = this.dec.toString(2)
                         this.oct = this.dec.toString(8)
@@ -162,6 +230,11 @@ export default {
                         this.selected = ''
                     }
                 }
+            },
+            intoView () {
+                setTimeout(() => {
+                    this.$refs.base.scrollIntoView()
+                }, 200)
             }
     }
 }
@@ -169,33 +242,39 @@ export default {
 
 <style scoped>
     .form {
-        margin-top: 10rem;
+        margin-top: 7rem;
+        text-align: left;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0%);
     }
     input, 
     .select {
         height: 2.8rem;
-        margin: 1rem;
+        margin: 0rem 1rem 0rem 1rem;
         border-radius: 4rem;
         background: transparent;
         border: 2px solid #00D3D3;
         color: lightgray;
         outline: none;
-        color: #ff0000;
     }
     .select {
         width: 5rem;
         padding-left: 0.5rem;
         padding-top: 0.2rem;
         font-size: 1.1rem;
+        color: lightgray;
     }
     .smallInput {
         width: 8rem;
         margin: 0.3rem;
+        color: #ff0000;
     }
     input {
         width: 18rem;
         font-size: 1.5rem;
         padding: 0 1.2rem 0 1.2rem;
+        color: #ff0000;
     }
     input:focus {
         border: 2px solid #EDCF32;
@@ -212,10 +291,29 @@ export default {
     input[type=number] {
     -moz-appearance: textfield;
     }
+    .inputLabel {
+        /* color: red;
+        padding: 10rem;
+        margin-bottom: -1rem; */
+        padding-left: 10rem;
+        color: lightgray;
+        opacity: 0.7;
+        position: relative;
+        top: -0.1rem;
+        left: -7.5rem;
+    }
+    #oct {
+        margin-bottom: 0.5rem;
+    }
+    .error {
+        color: red;
+        margin-left: 2.5rem;
+        margin-bottom: -10rem;
+    }
 
     @media (max-width: 740px) {
         .form {
-            margin-top: 7rem;
+            margin-top: 5.5rem;
         }
     }
     @media (max-width: 371px) {

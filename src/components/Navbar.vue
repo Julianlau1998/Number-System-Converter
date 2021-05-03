@@ -17,12 +17,14 @@ export default {
   .navbar {
     width: 100%;
     height: 4rem;
-    background-color: rgb(191, 191, 191);
+    background-color: #000000;
+    box-shadow: 1px 1px 3px lightgray;
     position: fixed;
     top: 0;
     left: 0;
     font-size: 1.3rem;
     position: fixed;
+    z-index: 10;
   }
   .hamburger {
     width: 2rem;
@@ -34,6 +36,7 @@ export default {
     position: fixed;
     top: -0.45rem;
     left: 1rem;
+    color: lightgray;
   }
 
 </style>
