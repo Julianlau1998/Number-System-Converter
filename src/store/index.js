@@ -5,6 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    transitionName: '',
+    componentTransition: 'swipe-component-left',
+    converter: true
   },
   mutations: {
   },

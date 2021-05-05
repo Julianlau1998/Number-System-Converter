@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+      <div id="blocker"></div>
       <form class="form" autocomplete=off>
           <h3 for="dec" class="label">
               <span
@@ -22,6 +23,7 @@
                 autocomplete="off"
                 maxlength="15"
               />
+              <br>
               <span 
                 v-if="errorDec"
                 class="error"
@@ -48,6 +50,7 @@
                 onfocus="this.removeAttribute('readonly');"
                 autocomplete="off"
               />
+              <br>
               <span 
                 v-if="errorBin"
                 class="error"
@@ -74,6 +77,7 @@
                 autocomplete="off"
                 maxlength="13"
               />
+              <br>
               <span 
                 v-if="errorHex"
                 class="error"
@@ -100,6 +104,7 @@
                 onfocus="this.removeAttribute('readonly');"
                 autocomplete="off"
               />
+              <br>
               <span 
                 v-if="errorOct"
                 class="error"
@@ -173,6 +178,7 @@ export default {
     created () {
         this.bases = [...Array(37).keys()]
         this.bases = this.bases.filter(el => el != 0 && el!= 1)
+        this.$store.state.componentTransition = 'swipe-component-left'
     },
     mounted () {
         this.$refs.dec.focus()
@@ -249,6 +255,7 @@ export default {
                                 this.errorBin = false
                                 this.errorOct = false
                                 this.errorHex = false
+                                this.dec = ''
                                 break
                             case 16:
                                 this.errorHex = true
@@ -312,11 +319,16 @@ export default {
 
 <style scoped>
     .form {
-        margin-top: 7rem;
-        text-align: left;
+        margin-top: 6rem;
         position: absolute;
         left: 50%;
         transform: translate(-50%, 0%);
+        background-color: black;
+        z-index: 10;
+        padding-bottom: 10rem;
+        width: 25rem;
+        margin-bottom: -4rem;
+        height: 19rem;
     }
     input, 
     .select {
@@ -370,20 +382,55 @@ export default {
         opacity: 0.7;
         position: relative;
         top: -0.1rem;
-        left: -7.5rem;
+        left: -6.6rem;
+        float: left;
     }
     #oct {
         margin-bottom: 0.5rem;
     }
     .error {
         color: red;
-        margin-left: 2.5rem;
-        margin-bottom: -10rem;
+        margin-left: 0rem;
+        margin-bottom: 0rem;
+    }
+    #blocker {
+        width: 100%;
+        height: 34rem;
+        background-color: black;
+        position: absolute;
+        left: 0;
+        z-index: 5;
+    }
+
+    @media (max-width: 350px) {
+        .form {
+            margin-top: 3.5rem !important;
+            height: 13rem;
+        }
+        input {
+            height: 2.8rem;
+            margin: -0.5rem 1rem -0.5rem 1rem;
+        }
+        #blocker {
+            height: 27.8rem;
+            background-color: black;
+        }
     }
 
     @media (max-width: 740px) {
         .form {
             margin-top: 4.5rem;
+        }
+    }
+    @media (max-width: 410px) {
+        input {
+            width: 18rem;
+        }
+        .smallInput {
+            width: 7rem;
+        }
+        .form {
+            width: 24rem;
         }
     }
     @media (max-width: 371px) {
@@ -392,6 +439,20 @@ export default {
         }
         .smallInput {
             width: 5rem;
+        }
+        .form {
+            width: 18rem;
+        }
+    }
+    @media (max-width: 300px) {
+        input {
+            width: 10rem;
+        }
+        .smallInput {
+            width: 4rem;
+        }
+        .form {
+            width: 17rem;
         }
     }
 </style>
