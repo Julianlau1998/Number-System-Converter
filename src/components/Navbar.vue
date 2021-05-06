@@ -17,7 +17,7 @@
     >
       <a
         id="rate"
-        href=''
+        href='https://play.google.com/store/apps/details?id=xyz.appmaker.xjzpta'
       >
         Rate this app
       </a>
