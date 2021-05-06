@@ -8,7 +8,7 @@
       <router-view/>
     </transition>
     <navbar />
-    <bottom-nav />
+    <bottom-nav v-if="!openKeyboard"/>
   </div>
 </template>
 
@@ -21,10 +21,36 @@ export default {
     navbar,
     bottomNav
   },
+  data () {
+    return {
+      height: 0,
+      openKeyBoard: false
+    }
+  },
+  mounted () {
+    if('visualViewport' in window) {
+      const vm = this
+      window.visualViewport.addEventListener('resize', function(event) {
+      vm.height = event.currentTarget.height
+    })
+    }
+  },
   computed: {
     transitionName () {
       return this.$store.state.transitionName
+    },
+    screenHeight () {
+      return this.height
     }
+  },
+  watch: {
+    height (newVal, oldVal) {
+      if ((oldVal-newVal)>50) {
+        this.openKeyBoard = true
+      } else if ((newVal-oldVal)>50) {
+        this.openKeyBoard = false
+      }
+    },
   }
 }
 </script>
@@ -36,6 +62,15 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+#blocker {
+  width: 100%;
+  height: 100vh;
+  background-color: transparent;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
 }
 body {
   background-color: black;

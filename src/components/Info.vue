@@ -1,5 +1,6 @@
 <template>
     <div id="wrapper">
+        <div id="blocker"></div>
         <h1 id="header">
             How to convert different number systems.
         </h1>

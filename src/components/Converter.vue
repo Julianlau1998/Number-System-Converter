@@ -184,6 +184,8 @@ export default {
         this.$refs.dec.focus()
         this.$refs.dec.click()
     },
+    computed: {
+    },
     watch: {
         dec(val) {
             if(this.base===10) {
@@ -395,11 +397,12 @@ export default {
     }
     #blocker {
         width: 100%;
-        height: 34rem;
-        background-color: black;
+        height: 100vh;
+        background-color: transparent;
         position: absolute;
         left: 0;
-        z-index: 5;
+        top: 0;
+        z-index: 0;
     }
 
     @media (max-width: 350px) {
