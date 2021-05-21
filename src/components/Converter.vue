@@ -18,7 +18,6 @@
                 @keydown="base = 10"
                 ref="dec"
                 value=""
-                autofocus
                 onfocus="this.removeAttribute('readonly');"
                 autocomplete="off"
                 maxlength="15"
@@ -181,8 +180,6 @@ export default {
         this.$store.state.componentTransition = 'swipe-component-left'
     },
     mounted () {
-        this.$refs.dec.focus()
-        this.$refs.dec.click()
     },
     computed: {
     },
