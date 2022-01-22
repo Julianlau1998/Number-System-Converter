@@ -1,16 +1,18 @@
 <template>
-  <div class="navbar">
-    <img
-      src="../../public/img/menu.png"
-      alt="menu icon"
-      class="menu"
-      @click="menu=!menu"
+  <span>
+      <div class="navbar">
+      <img
+        src="../../public/img/menu.png"
+        alt="menu icon"
+        class="menu"
+        @click="menu=!menu"
+        >
+      <h3
+        id="navTitle"
       >
-    <h3
-      id="navTitle"
-    >
-      Number Systems
-    </h3>
+        Number Systems
+      </h3>
+    </div>
     <div
       v-if="menu"
       class="openMenu"
@@ -22,7 +24,7 @@
         Rate this app
       </a>
     </div>
-  </div>
+  </span>
 </template>
 
 <script>
@@ -48,6 +50,7 @@ export default {
     font-size: 1.3rem;
     position: fixed;
     z-index: -1;
+    color: #94a8bd;
   }
   .menu {
     width: 2rem;
@@ -60,14 +63,12 @@ export default {
     position: fixed;
     top: -0.45rem;
     left: 1rem;
-    color: lightgray;
     cursor: pointer;
     z-index: 0;
   }
   .openMenu {
     width: 9rem;
     height: 2.3rem;
-    color: lightgray;
     background-color: #2a343c;
     border: 2px solid #eedcff;
     border-radius: 10px;
@@ -76,11 +77,13 @@ export default {
     top: 3rem;
     font-weight: 600;
     padding-top: 0.65rem;
+    font-size: 1.2rem;
   }
   #rate {
     margin-top: 0.4rem;
     cursor: pointer;
     z-index: 11;
+    color: #94a8bd;
   }
   img {
     -webkit-tap-highlight-color: transparent;
