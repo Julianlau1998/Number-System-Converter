@@ -1,25 +1,24 @@
 <template>
   <div id="app">
-    <transition
+    <router-view/>
+    <!-- <transition
       name= 'fade'
       mode="out-in"
       ref="transition"
     >
       <router-view/>
-    </transition>
+    </transition> -->
     <navbar />
-    <bottom-nav v-if="!openKeyboard"/>
+    <!-- <bottom-nav v-if="!openKeyboard"/> -->
   </div>
 </template>
 
 <script>
 import navbar from './components/Navbar'
-import bottomNav from './components/BottomNav'
 
 export default {
   components: {
-    navbar,
-    bottomNav
+    navbar
   },
   data () {
     return {
@@ -62,8 +61,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #2a343c;
+  width: 100vw;
+  margin: -0.5rem 0 0 -0.5rem;
 }
-#blocker {
+html {
+  background-color: #2a343c;
+}
+/* #blocker {
   width: 100%;
   height: 100vh;
   background-color: transparent;
@@ -71,9 +76,9 @@ export default {
   left: 0;
   top: 0;
   z-index: 0;
-}
+  background-color: #2a343c;
+} */
 body {
-  background-color: black;
 }
 
 #nav {

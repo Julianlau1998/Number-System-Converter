@@ -40,16 +40,14 @@ export default {
 
 <style scoped>
   .navbar {
-    width: 100%;
-    height: 4rem;
-    background-color: #000000;
-    box-shadow: 1px 1px 3px lightgray;
+    width: 100vw;
+    height: 4.5rem;
     position: fixed;
     top: 0;
     left: 0;
     font-size: 1.3rem;
     position: fixed;
-    z-index: 10;
+    z-index: -1;
   }
   .menu {
     width: 2rem;
@@ -64,22 +62,25 @@ export default {
     left: 1rem;
     color: lightgray;
     cursor: pointer;
+    z-index: 0;
   }
   .openMenu {
     width: 9rem;
     height: 2.3rem;
     color: lightgray;
-    background-color: black;
-    border: 2px solid lightgray;
+    background-color: #2a343c;
+    border: 2px solid #eedcff;
+    border-radius: 10px;
     position: fixed;
-    right: 2.2rem;
-    top: 3.2rem;
+    right: 1.8rem;
+    top: 3rem;
     font-weight: 600;
-    padding-top: 0.55rem;
+    padding-top: 0.65rem;
   }
   #rate {
     margin-top: 0.4rem;
     cursor: pointer;
+    z-index: 11;
   }
   img {
     -webkit-tap-highlight-color: transparent;

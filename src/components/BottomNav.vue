@@ -58,15 +58,18 @@ export default {
 <style>
     #bottomNav {
         width: 100vw;
-        height: 1.3rem;
-        position: absolute;
+        height: 3.3rem;
+        position: fixed;
         left: 0vw;
-        bottom: 1.7rem;
-        border-top: 2px solid rgb(165, 165, 165) !important;
+        bottom: 0rem;
         white-space: nowrap;
         padding-bottom: 1.2rem;
         z-index: 0;
+        background-color: #2a343c;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
     }
+
     .link {
         color: white;
         font-weight: 600;

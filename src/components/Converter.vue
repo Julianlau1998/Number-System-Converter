@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-      <div id="blocker"></div>
+      <!-- <div id="blocker"></div> -->
       <form class="form" autocomplete=off>
           <h3 for="dec" class="label">
               <span
@@ -18,7 +18,6 @@
                 @keydown="base = 10"
                 ref="dec"
                 value=""
-                onfocus="this.removeAttribute('readonly');"
                 autocomplete="off"
                 maxlength="15"
               />
@@ -46,7 +45,6 @@
                 ref="bin"
                 id=bin
                 maxlength="40"
-                onfocus="this.removeAttribute('readonly');"
                 autocomplete="off"
               />
               <br>
@@ -68,11 +66,9 @@
               <input
                 type="text"
                 placeholder="Hex" 
-                v-model="hex"
-                @keydown="base = 16"
+                @input="addToHex($event.data)"
                 ref="hex"
                 id="hex"
-                onfocus="this.removeAttribute('readonly');"
                 autocomplete="off"
                 maxlength="13"
               />
@@ -100,7 +96,6 @@
                 ref="oct"
                 id="oct"
                 maxlength="17"
-                onfocus="this.removeAttribute('readonly');"
                 autocomplete="off"
               />
               <br>
@@ -140,7 +135,6 @@
             @keydown="base=''" 
             @click="intoView()"
             ref="base"
-            onfocus="this.removeAttribute('readonly');"
             autocomplete="off"
         />
          <span 
@@ -160,7 +154,7 @@ export default {
         return {
             dec: null,
             bin: null,
-            hex: null,
+            hex: '',
             oct: null,
             selected: null,
             base: null,
@@ -195,6 +189,7 @@ export default {
             }
         },
         hex(val) {
+            this.$refs.hex.value = val
             if(this.base===16) {
                 this.convert(val, 16)
             }
@@ -205,9 +200,10 @@ export default {
             }
         },
         selected(val) {
-            if (isNaN(parseInt(val, 16))) {
-                val=''
-            }
+            // if (isNaN(parseInt(val, 16))) {
+            //     val=''
+            // }
+
             if (
                 this.base !== 2 &&
                 this.base !== 8 &&
@@ -232,6 +228,14 @@ export default {
         }
     },
     methods: {
+        addToHex () {
+            if (this.$refs.hex.value !== '') {
+                this.hex = this.$refs.hex.value
+            } else if (this.hex.length) {
+                this.hex = ''
+            }
+            this.convert(this.hex, 16)
+        },
             convert (val, base) {
                 if(val!=='') {
                     if (isNaN(parseInt(val, base))) {
@@ -308,26 +312,36 @@ export default {
                 }
             },
             intoView () {
-                setTimeout(() => {
-                    this.$refs.base.scrollIntoView()
-                }, 200)
+                // setTimeout(() => {
+                //     this.$refs.base.scrollIntoView()
+                // }, 200)
             }
     }
 }
 </script>
 
 <style scoped>
+    .wrapper {
+        width: 100vw;
+        height: 120vh;
+        background-color: #1a1c1e;
+        border-top-right-radius: 33px;
+        border-top-left-radius: 33px;
+        margin-top: 4.5rem;
+        z-index: 10;
+    }
     .form {
-        margin-top: 6rem;
+        margin-top: 4rem;
         position: absolute;
         left: 50%;
         transform: translate(-50%, 0%);
-        background-color: black;
+        background-color: transparent;
         z-index: 10;
         padding-bottom: 10rem;
         width: 25rem;
         margin-bottom: -4rem;
         height: 19rem;
+        border-radius: 20px;
     }
     input, 
     .select {
@@ -335,7 +349,7 @@ export default {
         margin: 0rem 1rem 0rem 1rem;
         border-radius: 4rem;
         background: transparent;
-        border: 2px solid #00D3D3;
+        border: 3px solid #cbe5ff;
         color: lightgray;
         outline: none;
     }
@@ -349,16 +363,16 @@ export default {
     .smallInput {
         width: 8rem;
         margin: 0.3rem;
-        color: #ff0000;
+        color: #dc2727;
     }
     input {
         width: 18rem;
         font-size: 1.5rem;
         padding: 0 1.2rem 0 1.2rem;
-        color: #ff0000;
+        color: #dc2727;
     }
     input:focus {
-        border: 2px solid #EDCF32;
+        border: 2px solid #eedcff;
     }
 
     /*  Remove Arrows on inputs with type number */
@@ -388,7 +402,7 @@ export default {
         margin-bottom: 0.5rem;
     }
     .error {
-        color: red;
+        color: #dc2727;
         margin-left: 0rem;
         margin-bottom: 0rem;
     }
@@ -399,7 +413,7 @@ export default {
         position: absolute;
         left: 0;
         top: 0;
-        z-index: 0;
+        z-index: 10;
     }
 
     @media (max-width: 350px) {
@@ -419,7 +433,7 @@ export default {
 
     @media (max-width: 740px) {
         .form {
-            margin-top: 4.5rem;
+            margin-top: 1.5rem;
         }
     }
     @media (max-width: 410px) {

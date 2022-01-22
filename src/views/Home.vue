@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <span v-touch:swipe="swipeHandler">
+  <div class="home">
+    <converter v-if="converter" />
+    <!-- <span v-touch:swipe="swipeHandler">
       <transition
         :name= componentTransitionName 
         mode="out-in"
@@ -9,23 +10,22 @@
         <converter v-if="converter" />
         <info v-else />
       </transition>
-    </span>
+    </span> -->
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import Vue2TouchEvents from 'vue2-touch-events'
 import converter from '../components/Converter'
-import info from '../components/Info'
 
-Vue.use(Vue2TouchEvents)
+// import Vue from 'vue'
+// import Vue2TouchEvents from 'vue2-touch-events'
+// import info from '../components/Info'
+// Vue.use(Vue2TouchEvents)
 
 export default {
   name: 'Home',
   components: {
-    converter,
-    info
+    converter
   },
   data () {
     return {
@@ -50,3 +50,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  body {
+    overflow-x: hidden;
+  }
+</style>
