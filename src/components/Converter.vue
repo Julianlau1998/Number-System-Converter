@@ -363,13 +363,13 @@ export default {
     .smallInput {
         width: 8rem;
         margin: 0.3rem;
-        color: #dc2727;
+        color: #8ff3f3;
     }
     input {
         width: 18rem;
         font-size: 1.5rem;
         padding: 0 1.2rem 0 1.2rem;
-        color: #dc2727;
+        color: #8ff3f3;
     }
     input:focus {
         border: 2px solid #eedcff;
