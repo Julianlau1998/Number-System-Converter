@@ -6,6 +6,7 @@
         alt="menu icon"
         class="menu"
         @click="menu=!menu"
+        v-if="!$store.state.iOS"
         >
       <h3
         id="navTitle"
@@ -14,7 +15,7 @@
       </h3>
     </div>
     <div
-      v-if="menu"
+      v-if="menu && !$store.state.iOS"
       class="openMenu"
     >
       <a

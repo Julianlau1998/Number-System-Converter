@@ -23,8 +23,20 @@ export default {
   data () {
     return {
       height: 0,
-      openKeyBoard: false
+      openKeyBoard: false,
+      iOS: false
     }
+  },
+  created () {
+    this.iOS = [
+      'iPad Simulator',
+      'iPhone Simulator',
+      'iPod Simulator',
+      'iPad',
+      'iPhone',
+      'iPod'
+    ].includes(navigator.platform) || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+    this.$store.state.iOS = this.iOS
   },
   mounted () {
     if('visualViewport' in window) {

@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     transitionName: '',
     componentTransition: 'swipe-component-left',
-    converter: true
+    converter: true,
+    iOS: false
   },
   mutations: {
   },
