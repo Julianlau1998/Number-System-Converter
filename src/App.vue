@@ -73,12 +73,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: #2a343c;
+  background-color: transparent;
   width: 100vw;
   margin: -0.5rem 0 0 -0.5rem;
 }
 html {
-  background-color: #2a343c;
+  background-color: #1a1c1e; /* For browsers that do not support gradients */
+  background-image: linear-gradient(#2a343c, #1a1c1e);
 }
 /* #blocker {
   width: 100%;
