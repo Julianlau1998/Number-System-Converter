@@ -78,7 +78,7 @@ export default {
   margin: -0.5rem 0 0 -0.5rem;
 }
 html {
-  background-color: #1a1c1e; /* For browsers that do not support gradients */
+  background-color: #2a343c; /* For browsers that do not support gradients */
   background-image: linear-gradient(#2a343c, #1a1c1e);
 }
 /* #blocker {
