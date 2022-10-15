@@ -322,7 +322,7 @@ export default {
 
 <style scoped>
     .wrapper {
-        width: 100vw;
+        width: 99.9vw;
         height: 120vh;
         background-color: #1a1c1e;
         border-top-right-radius: 33px;
