@@ -144,8 +144,8 @@
                 Not a valid value
           </span>
         <br>
-        <button v-if="iosApp" type="button" class="button is-support-button" id="support" @click="support">
-          Watch Ad To Support The Developer
+        <button type="button" class="button is-support-button" id="support" @click="support">
+
         </button>
       </form>
   </div>
@@ -433,7 +433,7 @@ export default {
     .is-support-button {
       margin-top: 3rem;
       background-color: transparent;
-      border: 2px solid #cbe5ff;
+      border: 1px solid black;
       border-radius: 20px;
       color: #cbe5ff;
       padding: 10px;
