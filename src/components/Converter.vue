@@ -144,8 +144,14 @@
                 Not a valid value
           </span>
         <br>
-        <button type="button" class="button is-support-button" id="support" @click="support">
-
+        <button
+            v-if="this.iosApp && window.webkit.messageHandlers.toggleMessageHandler"
+            type="button"
+            class="button is-support-button"
+            id="support"
+            @click="support"
+        >
+          Watch Ad To Support The Developer
         </button>
       </form>
   </div>
@@ -433,7 +439,7 @@ export default {
     .is-support-button {
       margin-top: 3rem;
       background-color: transparent;
-      border: 1px solid black;
+      border: 2px solid #cbe5ff;
       border-radius: 20px;
       color: #cbe5ff;
       padding: 10px;
