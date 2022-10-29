@@ -143,6 +143,10 @@
           >
                 Not a valid value
           </span>
+        <br>
+        <button v-if="iosApp" type="button" class="button is-support-button" id="support" @click="support">
+          Watch Ad To Support The Developer
+        </button>
       </form>
   </div>
 </template>
@@ -176,6 +180,9 @@ export default {
     mounted () {
     },
     computed: {
+      iosApp () {
+        return window.webkit && window.webkit.messageHandlers
+      }
     },
     watch: {
         dec(val) {
@@ -315,6 +322,13 @@ export default {
                 // setTimeout(() => {
                 //     this.$refs.base.scrollIntoView()
                 // }, 200)
+            },
+            support () {
+              if (this.iosApp && window.webkit.messageHandlers.toggleMessageHandler) {
+                window.webkit.messageHandlers.toggleMessageHandler.postMessage({
+                  "message": 'Trigger reward-ad:'
+                });
+              }
             }
     }
 }
@@ -414,6 +428,22 @@ export default {
         left: 0;
         top: 0;
         z-index: 10;
+    }
+
+    .is-support-button {
+      margin-top: 3rem;
+      background-color: transparent;
+      border: 2px solid #cbe5ff;
+      border-radius: 20px;
+      color: #cbe5ff;
+      padding: 10px;
+      width: 10rem;
+      cursor: pointer;
+    }
+
+    .is-support-button:hover {
+      background-color: #cbe5ff;
+      color: black;
     }
 
     @media (max-width: 350px) {
