@@ -145,7 +145,7 @@
           </span>
         <br>
         <button
-            v-if="this.iosApp && window.webkit.messageHandlers.toggleMessageHandler"
+            v-if="this.iosApp"
             type="button"
             class="button is-support-button"
             id="support"
@@ -187,7 +187,7 @@ export default {
     },
     computed: {
       iosApp () {
-        return window.webkit && window.webkit.messageHandlers
+        return window.webkit
       }
     },
     watch: {
