@@ -12,7 +12,7 @@
               <br>
               <input
                 type="tel"
-                placeholder="Dec" 
+                placeholder="Dec"
                 id="dec"
                 v-model="dec"
                 @keydown="base = 10"
@@ -22,7 +22,7 @@
                 maxlength="15"
               />
               <br>
-              <span 
+              <span
                 v-if="errorDec"
                 class="error"
               >
@@ -48,7 +48,7 @@
                 autocomplete="off"
               />
               <br>
-              <span 
+              <span
                 v-if="errorBin"
                 class="error"
               >
@@ -61,11 +61,11 @@
                 v-if="hex!==null && hex!==''"
               >
                   Hexadecimal
-              </span>  
+              </span>
               <br>
               <input
                 type="text"
-                placeholder="Hex" 
+                placeholder="Hex"
                 @input="addToHex($event.data)"
                 ref="hex"
                 id="hex"
@@ -73,7 +73,7 @@
                 maxlength="13"
               />
               <br>
-              <span 
+              <span
                 v-if="errorHex"
                 class="error"
               >
@@ -99,22 +99,22 @@
                 autocomplete="off"
               />
               <br>
-              <span 
+              <span
                 v-if="errorOct"
                 class="error"
               >
                 Not a valid Octal value
               </span>
           </h3>
-        <select 
+        <select
             name="baseSelect"
             id="baseSelect"
             class="select"
             ref="selectedBase"
             v-model="selectedBase"
         >
-            <option 
-                value="" 
+            <option
+                value=""
                 disabled selected
             >
                 Base
@@ -130,21 +130,21 @@
         <input
             type="text"
             class="smallInput"
-            placeholder="Value" 
+            placeholder="Value"
             v-model="selected"
-            @keydown="base=''" 
+            @keydown="base=''"
             @click="intoView()"
             ref="base"
             autocomplete="off"
         />
-         <span 
+         <span
             v-if="errorBase"
             class="errorBase"
           >
                 Not a valid value
           </span>
         <br>
-        <button
+<!--        <button
             v-if="this.iosApp"
             type="button"
             class="button is-support-button"
@@ -152,7 +152,7 @@
             @click="support"
         >
           Watch Ad To Support The Developer
-        </button>
+        </button>-->
       </form>
   </div>
 </template>
@@ -227,7 +227,7 @@ export default {
                 this.selectedBase = this.$refs.selectedBase.value
                 if(this.selectedBase!=='') {
                     this.convert(val, this.selectedBase)
-                } 
+                }
                 if (this.selectedBase === '') {
                     this.selectedBase = 10
                     this.convert(val, this.selectedBase)
@@ -363,7 +363,7 @@ export default {
         height: 19rem;
         border-radius: 20px;
     }
-    input, 
+    input,
     .select {
         height: 2.8rem;
         margin: 0rem 1rem 0rem 1rem;
